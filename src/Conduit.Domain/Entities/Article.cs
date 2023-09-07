@@ -32,6 +32,10 @@ public class Article : IAuditableEntity
 
     public DateTime UpdatedAt { get; set; }
 
+    public int DigitalPrice { get; set; }
+
+    public int PhysicalPrice { get; set; }
+
     public virtual IReadOnlyCollection<Comment> Comments => _comments;
 
     public virtual IReadOnlyCollection<ArticleTag> Tags => _tags;
