@@ -99,5 +99,18 @@ public class AppDbContext : DbContext, IAppDbContext
                 .HasForeignKey(e => e.FollowerId)
                 .OnDelete(DeleteBehavior.Restrict);
         });
+
+        modelBuilder.Entity<Order>(b =>
+        {
+            b.HasKey(e => new { e.ArticleId, e.UserId });
+
+            b.HasOne(e => e.Article)
+               .WithMany(e => e.Orders)
+               .HasForeignKey(e => e.ArticleId);
+
+            b.HasOne(e => e.User)
+                .WithMany(e => e.Orders)
+                .HasForeignKey(e => e.UserId);
+        });
     }
 }

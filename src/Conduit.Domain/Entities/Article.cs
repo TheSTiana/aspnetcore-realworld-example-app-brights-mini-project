@@ -9,6 +9,7 @@ public class Article : IAuditableEntity
     private readonly List<Comment> _comments = new();
     private readonly List<ArticleTag> _tags = new();
     private readonly List<ArticleFavorite> _favoredUsers = new();
+    private readonly List<Order> _orders = new();
 
     public int Id { get; private set; }
 
@@ -41,6 +42,8 @@ public class Article : IAuditableEntity
     public virtual IReadOnlyCollection<ArticleTag> Tags => _tags;
 
     public virtual IReadOnlyCollection<ArticleFavorite> FavoredUsers => _favoredUsers;
+
+    public virtual IReadOnlyCollection<Order> Orders => _orders;
 
     public bool IsFavoritedBy(User user)
     {
