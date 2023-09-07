@@ -95,4 +95,27 @@ public class Article : IAuditableEntity
                 .ToList()
         );
     }
+
+    /// <summary>
+    /// Method to check if this article has been ordered by given user
+    /// Returns true if true
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    public bool IsOrderedBy(User user)
+    {
+        return Orders.Any(o => o.UserId == user.Id);
+    }
+
+    /// <summary>
+    /// Create new order for this article by given user with given info about physical or not
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="physicalCopy"></param>
+    /// <param name="email"></param>
+    /// <param name="snailMail">Default empty string</param>
+    public void Order(User user, bool physicalCopy, string email, string snailMail = "")
+    {
+        _orders.Add(new Order { User = user, Article = this, PyshicalCopy = physicalCopy, Email = email, SnailMail = snailMail ?? "" });
+    }
 }
