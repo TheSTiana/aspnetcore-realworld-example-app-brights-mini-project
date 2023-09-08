@@ -82,4 +82,9 @@ public class User : IAuditableEntity
     {
         _following.AddRange(users.Select(x => new FollowerUser { Following = x, Follower = this }).ToList());
     }
+
+    public bool HasOrder(Article article)
+    {
+        return Orders.Any(f => f.ArticleId == article.Id);
+    }
 }
