@@ -133,21 +133,21 @@ public class ArticlesController
         return _sender.Send(new ArticleFavoriteCommand(slug, false), cancellationToken);
     }
 
-    /// <summary>
-    /// Order article
-    /// </summary>
-    /// <param name="slug"></param>
-    /// <param name="physicalCopy"></param>
-    /// <param name="email"></param>
-    /// <param name="snailMail"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [HttpPost("{slug}/order", Name = "CreateOrder")]
-    [ApiExplorerSettings(GroupName = "Orders")]
-    public Task<SingleArticleResponse> Order(string slug, bool physicalCopy, string email, string snailMail, CancellationToken cancellationToken)
-    {
-        return _sender.Send(new OrderCommand(slug, physicalCopy, email, snailMail), cancellationToken);
-    }
+    ///// <summary>
+    ///// Order article
+    ///// </summary>
+    ///// <param name="slug"></param>
+    ///// <param name="physicalCopy"></param>
+    ///// <param name="email"></param>
+    ///// <param name="snailMail"></param>
+    ///// <param name="cancellationToken"></param>
+    ///// <returns></returns>
+    //[HttpPost("{slug}/order", Name = "CreateOrder")]
+    //[ApiExplorerSettings(GroupName = "Orders")]
+    //public Task<SingleArticleResponse> Order(string slug, bool physicalCopy, string email, string snailMail, CancellationToken cancellationToken)
+    //{
+    //    return _sender.Send(new OrderCommand(slug, physicalCopy, email, snailMail), cancellationToken);
+    //}
 }
 
 public record NewArticleRequest(NewArticleDto Article);
