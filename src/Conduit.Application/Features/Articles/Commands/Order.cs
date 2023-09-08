@@ -11,7 +11,7 @@ using Conduit.Application.Interfaces;
 using MediatR;
 
 namespace Conduit.Application.Features.Articles.Commands;
-public record OrderCommand(string Slug, bool Order) : IRequest<SingleArticleResponse>;
+public record OrderCommand(string Slug, bool PyhysicalCopy, string Email, string SnailMail) : IRequest<SingleArticleResponse>;
 
 public class OrderHandler : IRequestHandler<OrderCommand, SingleArticleResponse>
 {
@@ -35,10 +35,9 @@ public class OrderHandler : IRequestHandler<OrderCommand, SingleArticleResponse>
         var article = await _context.Articles
             .FindAsync(x => x.Slug == request.Slug, cancellationToken);
 
-        if (request.Order) // PyshicalCopy = physicalCopy, Email = email, SnailMail = snailMail ?? "" 
-        {
-            article.Order(_currentUser.User!, _physicalCopy, _email, _snailMail);
-        }
+
+        article.Order(_currentUser.User!, _physicalCopy, _email, _snailMail);
+
 
         await _context.SaveChangesAsync(cancellationToken);
 

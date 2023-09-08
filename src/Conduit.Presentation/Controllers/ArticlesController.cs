@@ -134,17 +134,19 @@ public class ArticlesController
     }
 
     /// <summary>
-    /// Favorite an article
+    /// Order article
     /// </summary>
-    /// <remarks>Favorite an article. Auth is required</remarks>
-    /// <param name="slug">Slug of the article that you want to favorite</param>
+    /// <param name="slug"></param>
+    /// <param name="physicalCopy"></param>
+    /// <param name="email"></param>
+    /// <param name="snailMail"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost("{slug}/order", Name = "CreateOrder")]
     [ApiExplorerSettings(GroupName = "Orders")]
-    public Task<SingleArticleResponse> Order(string slug, CancellationToken cancellationToken)
+    public Task<SingleArticleResponse> Order(string slug, bool physicalCopy, string email, string snailMail, CancellationToken cancellationToken)
     {
-        return _sender.Send(new OrderCommand(slug, true), cancellationToken);
+        return _sender.Send(new OrderCommand(slug, physicalCopy, email, snailMail), cancellationToken);
     }
 }
 
