@@ -33,6 +33,10 @@ public class ArticleDto
     public bool Favorited { get; set; }
 
     public int FavoritesCount { get; set; }
+
+    public bool Ordered { get; set; }
+
+    public int OrderCount { get; set; }
 }
 
 public static class ArticleMapper
@@ -50,7 +54,9 @@ public static class ArticleMapper
             Favorited = currentUser != null && currentUser.HasFavorite(article),
             FavoritesCount = article.FavoredUsers.Count,
             Author = article.Author.MapToProfile(currentUser),
-            TagList = new Collection<string>(article.Tags.Select(t => t.Tag.Name).OrderBy(t => t).ToList())
+            TagList = new Collection<string>(article.Tags.Select(t => t.Tag.Name).OrderBy(t => t).ToList()),
+            Ordered = currentUser != null && currentUser.HasOrder(article),
+            OrderCount = article.Orders.Count
         };
     }
 }
