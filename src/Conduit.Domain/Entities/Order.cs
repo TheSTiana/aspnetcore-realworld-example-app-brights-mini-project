@@ -14,7 +14,7 @@ public class Order
     public int UserId { get; set; }
     public virtual required User User { get; set; }
 
-    public required bool PyshicalCopy { get; set; }
+    public required bool PhysicalCopy { get; set; }
 
     [MaxLength(255)]
     public required string Email { get; set; }

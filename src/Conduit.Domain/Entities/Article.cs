@@ -116,6 +116,6 @@ public class Article : IAuditableEntity
     /// <param name="snailMail">Default empty string</param>
     public void Order(User user, bool physicalCopy, string email, string snailMail = "")
     {
-        _orders.Add(new Order { User = user, Article = this, PyshicalCopy = physicalCopy, Email = email, SnailMail = snailMail ?? "" });
+        _orders.Add(new Order { User = user, Article = this, PhysicalCopy = physicalCopy, Email = email, SnailMail = snailMail ?? "" });
     }
 }

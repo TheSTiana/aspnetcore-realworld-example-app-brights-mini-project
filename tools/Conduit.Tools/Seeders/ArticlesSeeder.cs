@@ -37,6 +37,8 @@ public class ArticlesSeeder : ISeeder
             .RuleFor(a => a.Author, f => f.PickRandom(users))
             .RuleFor(a => a.CreatedAt, f => f.Date.Recent(90).ToUniversalTime())
             .RuleFor(a => a.Slug, (f, a) => _slugifier.Generate(a.Title))
+            .RuleFor(a => a.DigitalPrice, (f, a) => f.Random.Number(500))
+            .RuleFor(a => a.PhysicalPrice, (f, a) => f.Random.Number(500))
             .Generate(500);
 
         foreach (var article in articles)
