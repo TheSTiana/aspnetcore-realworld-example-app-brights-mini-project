@@ -34,9 +34,9 @@ public class ArticleDto
 
     public int FavoritesCount { get; set; }
 
-    public int DigitalPrice { get; set; }
+    public required int DigitalPrice { get; set; }
 
-    public int PhysicalPrice { get; set; }
+    public required int PhysicalPrice { get; set; }
 
     public bool Ordered { get; set; }
 
