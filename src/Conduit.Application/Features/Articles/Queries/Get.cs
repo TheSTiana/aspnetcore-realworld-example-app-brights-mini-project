@@ -34,6 +34,10 @@ public class ArticleDto
 
     public int FavoritesCount { get; set; }
 
+    public int DigitalPrice { get; set; }
+
+    public int PhysicalPrice { get; set; }
+
     public bool Ordered { get; set; }
 
     public int OrderCount { get; set; }
@@ -55,6 +59,8 @@ public static class ArticleMapper
             FavoritesCount = article.FavoredUsers.Count,
             Author = article.Author.MapToProfile(currentUser),
             TagList = new Collection<string>(article.Tags.Select(t => t.Tag.Name).OrderBy(t => t).ToList()),
+            DigitalPrice = article.DigitalPrice,
+            PhysicalPrice = article.PhysicalPrice,
             Ordered = currentUser != null && currentUser.HasOrder(article),
             OrderCount = article.Orders.Count
         };
