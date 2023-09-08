@@ -140,8 +140,8 @@ public class ArticlesController
     /// <param name="slug">Slug of the article that you want to favorite</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPost("{slug}/order", Name = "CreateArticleFavorite")]
-    [ApiExplorerSettings(GroupName = "Favorites")]
+    [HttpPost("{slug}/order", Name = "CreateOrder")]
+    [ApiExplorerSettings(GroupName = "Orders")]
     public Task<SingleArticleResponse> Order(string slug, CancellationToken cancellationToken)
     {
         return _sender.Send(new OrderCommand(slug, true), cancellationToken);
