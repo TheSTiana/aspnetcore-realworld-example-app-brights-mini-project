@@ -132,6 +132,20 @@ public class ArticlesController
     {
         return _sender.Send(new ArticleFavoriteCommand(slug, false), cancellationToken);
     }
+
+    /// <summary>
+    /// Favorite an article
+    /// </summary>
+    /// <remarks>Favorite an article. Auth is required</remarks>
+    /// <param name="slug">Slug of the article that you want to favorite</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("{slug}/order", Name = "CreateArticleFavorite")]
+    [ApiExplorerSettings(GroupName = "Favorites")]
+    public Task<SingleArticleResponse> Order(string slug, CancellationToken cancellationToken)
+    {
+        return _sender.Send(new ArticleOrderCommand(slug, true), cancellationToken);
+    }
 }
 
 public record NewArticleRequest(NewArticleDto Article);
