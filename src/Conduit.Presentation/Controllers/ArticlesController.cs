@@ -144,7 +144,7 @@ public class ArticlesController
     [ApiExplorerSettings(GroupName = "Favorites")]
     public Task<SingleArticleResponse> Order(string slug, CancellationToken cancellationToken)
     {
-        return _sender.Send(new ArticleOrderCommand(slug, true), cancellationToken);
+        return _sender.Send(new OrderCommand(slug, true), cancellationToken);
     }
 }
 
